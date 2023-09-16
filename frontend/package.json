@@ -11,11 +11,16 @@
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
+    "@mantine/carousel": "^6.0.20",
     "@mantine/core": "^6.0.20",
     "@mantine/hooks": "^6.0.20",
     "@mantine/modals": "^6.0.20",
+    "embla-carousel-react": "^8.0.0-rc13",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-markdown": "^8.0.7",
+    "react-router-dom": "^6.16.0",
+    "remark-gfm": "^3.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
@@ -26,8 +31,11 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "i": "^0.3.7",
+    "npm": "^10.1.0",
     "postcss": "^8.4.29",
     "tailwindcss": "^3.3.3",
-    "vite": "^4.4.5"
+    "vite": "^4.4.5",
+    "vite-jsconfig-paths": "^2.0.1"
   }
 }
