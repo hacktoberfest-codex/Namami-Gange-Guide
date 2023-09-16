@@ -1,5 +1,7 @@
 import express, { Router } from 'express'
+import * as controller from '../controller/controller.js';
 const router = Router();
+
 
 /**
  * all are post methods , api endpoints: 
@@ -10,32 +12,11 @@ const router = Router();
  * 
  */
 
-router.get('/', (req, res) => {
-    res.json('hello there!')
-})
+router.route('/').get(controller.test)
 
-// Text in english
-router.post('/englishtext', async (req, res) => {
-    const prompt = req.body;
-    const result = await bot(prompt)
-
-    return result;
-
-})
-
-// return text and audio in english
-router.post('/englishvoice', async (req, res) => {
-    const prompt = req.body;
-})
-
-// return text in other language
-router.post('/text_in_selected_lang', async (req, res) => {
-    const prompt = req.body;
-})
-
-// return text and audio in other language
-router.post('/voice_in_selected_lang', async (req, res) => {
-    const prompt = req.body;
-})
+router.route('/englishtext').post(controller.english_text_res)
+router.route('/englishvoice').post(controller.english_text_audio_res)
+router.route('/text_in_selected_lang').post(controller.text_in_selected_lang)
+router.route('/voice_in_selected_lang').post(controller.english_text_audio_res)
 
 export default router; 
