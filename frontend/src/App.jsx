@@ -1,15 +1,28 @@
-import React from 'react'
-import { MantineProvider, Text } from '@mantine/core';
+import React from 'react';
+import { MantineProvider } from '@mantine/core';
+import { ChatBot, Home } from 'pages';
+import MessageProvider from 'context/MessageProvider';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-function App() {
-  return (
-    <>
-      <MantineProvider withGlobalStyles withNormalizeCSS>
-        <Text>Welcome to Mantine!</Text>
-        <h1 className='text-3xl text-red-400'>Hello there!!</h1>
-      </MantineProvider>
-    </>
-  )
-}
+const App = () => {
+	return (
+		<MessageProvider>
+			<MantineProvider
+				withGlobalStyles
+				withNormalizeCSS
+				theme={{
+					fontFamily: 'Poppins',
+					headings: { fontFamily: 'Greycliff CF, sans-serif' }
+				}}>
+				<Router>
+					<Routes>
+						<Route path='/' element={<Home />} />
+						<Route path='/chat' element={<ChatBot />} />
+					</Routes>
+				</Router>
+			</MantineProvider>
+		</MessageProvider>
+	);
+};
 
-export default App
+export default App;
