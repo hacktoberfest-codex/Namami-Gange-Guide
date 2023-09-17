@@ -44,14 +44,19 @@ const ChatBot = () => {
 
 	useEffect(() => {
 		focusInput();
+		console.log(state, listening)
+
 	}, [state]);
 
-	const handlespeechListening = () => {
-		SpeechRecognition.startListening({ continuous: true })
+	const handlespeechListening = (event) => {
+		event.preventDefault();
+		SpeechRecognition.startListening({ continuous: true });
+		setMessage(transcript)
 	}
 	const handlespeechpause = () => {
 		SpeechRecognition.stopListening();
 		resetTranscript();
+		setMessage('')
 		SpeechRecognition.abortListening()
 	}
 
@@ -133,9 +138,9 @@ const ChatBot = () => {
 					<button className='bg-slate-50 hover:bg-slate-300 ml-1 mr-1' onClick={handlespeechListening} >
 						<BsMic className=' text-4xl ' />
 					</button>
-					<input type='text' ref={inputRef} className='w-full rounded-l-lg p-2' placeholder={state === 'idle' ? 'Type your message...' : '...'} value={message || transcript} onChange={e => setMessage(e.target.value)} disabled={state !== 'idle'} />
+					<input type='text' ref={inputRef} className='w-full rounded-l-lg p-2' placeholder={state === 'idle' ? 'Type your message...' : '...'} value={message} onChange={e => setMessage(e.target.value)} disabled={state !== 'idle'} />
 					{state === 'idle' ? (
-						<button className='bg-blue-700 text-white text-base font-bold py-2 px-4 rounded-r-lg' type='submit' onClick={handlespeechpause}>
+						<button className='bg-blue-700 text-white text-base font-bold py-2 px-4 rounded-r-lg' type='submit' onClick={handlespeechpause} >
 							Send
 						</button>
 					) : null}
