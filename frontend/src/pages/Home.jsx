@@ -4,10 +4,10 @@ import Bot from './Bot';
 
 const Home = () => {
 	return (
-		<Fragment>
+		<section className='w-full h-screen bg-[wheat]'>
 			<Carousel />
 			<Bot />
-		</Fragment>
+		</section>
 	);
 };
 
