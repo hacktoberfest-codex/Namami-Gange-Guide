@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 
-import 'react-spring-bottom-sheet/dist/style.css'
+// import 'react-spring-bottom-sheet/dist/style.css'
 
 export default function Navigation() {
     const [Latitude, setLatitude] = useState(0);
@@ -10,7 +10,7 @@ export default function Navigation() {
     const [Reponse, setReponse] = useState({});
 
     useEffect(() => {
-        axios.post('http://localhost:3000/updateLocation', {
+        axios.post('http://localhost:1212/updateLocation', {
             "lat": Latitude,
             "lon": Longitude
         }).then(response => {
