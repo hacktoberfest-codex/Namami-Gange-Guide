@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Welcome, ChatMessage } from 'components';
+import { BsMic } from 'react-icons/bs'
 import { samplePhrases } from 'data';
 import { useMessageContext } from 'context/MessageProvider';
+import SelectLang from 'components/SelectLang';
 
 const ChatBot = () => {
 	const [message, setMessage] = useState('');
@@ -106,6 +108,10 @@ const ChatBot = () => {
 							Clear
 						</button>
 					) : null}
+					<SelectLang />
+					<button className='bg-slate-50 hover:bg-slate-300 ml-1 mr-1'>
+						<BsMic className=' text-4xl ' />
+					</button>
 					<input type='text' ref={inputRef} className='w-full rounded-l-lg p-2' placeholder={state === 'idle' ? 'Type your message...' : '...'} value={message} onChange={e => setMessage(e.target.value)} disabled={state !== 'idle'} />
 					{state === 'idle' ? (
 						<button className='bg-blue-700 text-white text-base font-bold py-2 px-4 rounded-r-lg' type='submit'>
