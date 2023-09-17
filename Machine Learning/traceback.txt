@@ -1,0 +1,83 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While loading <renpy.display.im.Scale object at 0x0000000004d76fa0>:
+  File "game/script.rpy", line 29, in script
+    ch "Hello , I'm Chacha Chaudhary "
+  File "renpy/common/000window.rpy", line 114, in _window_auto_callback
+    _window_show(auto=True)
+  File "renpy/common/000window.rpy", line 69, in _window_show
+    renpy.with_statement(trans)
+OSError: Couldn't find file 'c2.png'.
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/script.rpy", line 29, in script
+    ch "Hello , I'm Chacha Chaudhary "
+  File "E:\renpy-8.1.2-sdk\renpy\ast.py", line 898, in execute
+    statement_name(stmt_name)
+  File "E:\renpy-8.1.2-sdk\renpy\ast.py", line 47, in statement_name
+    i(name)
+  File "renpy/common/000window.rpy", line 114, in _window_auto_callback
+    _window_show(auto=True)
+  File "renpy/common/000window.rpy", line 69, in _window_show
+    renpy.with_statement(trans)
+  File "E:\renpy-8.1.2-sdk\renpy\exports.py", line 1758, in with_statement
+    return renpy.game.interface.do_with(trans, paired, clear=clear)
+  File "E:\renpy-8.1.2-sdk\renpy\display\core.py", line 2981, in do_with
+    return self.interact(trans_pause=True,
+  File "E:\renpy-8.1.2-sdk\renpy\display\core.py", line 3587, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
+  File "E:\renpy-8.1.2-sdk\renpy\display\core.py", line 4180, in interact_core
+    self.draw_screen(root_widget, fullscreen_video, (not fullscreen_video) or video_frame_drawn)
+  File "E:\renpy-8.1.2-sdk\renpy\display\core.py", line 2785, in draw_screen
+    surftree = renpy.display.render.render_screen(
+  File "render.pyx", line 492, in renpy.display.render.render_screen
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "E:\renpy-8.1.2-sdk\renpy\display\layout.py", line 888, in render
+    surf = render(child, width, height, cst, cat)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "E:\renpy-8.1.2-sdk\renpy\display\transition.py", line 377, in render
+    bottom = render(self.old_widget, width, height, st, at)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "E:\renpy-8.1.2-sdk\renpy\display\layout.py", line 888, in render
+    surf = render(child, width, height, cst, cat)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "E:\renpy-8.1.2-sdk\renpy\display\layout.py", line 888, in render
+    surf = render(child, width, height, cst, cat)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "E:\renpy-8.1.2-sdk\renpy\display\transform.py", line 909, in render
+    return RenderTransform(self).render(width, height, st, at)
+  File "accelerator.pyx", line 979, in renpy.display.accelerator.RenderTransform.render
+  File "accelerator.pyx", line 404, in renpy.display.accelerator.RenderTransform.render_child
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "E:\renpy-8.1.2-sdk\renpy\display\image.py", line 513, in render
+    return wrap_render(self.target, width, height, st, at)
+  File "E:\renpy-8.1.2-sdk\renpy\display\image.py", line 316, in wrap_render
+    rend = render(child, w, h, st, at)
+  File "render.pyx", line 170, in renpy.display.render.render
+  File "render.pyx", line 266, in renpy.display.render.render
+  File "E:\renpy-8.1.2-sdk\renpy\display\im.py", line 676, in render
+    return cache.get(self, render=True)
+  File "E:\renpy-8.1.2-sdk\renpy\display\im.py", line 330, in get
+    surf = image.load()
+  File "E:\renpy-8.1.2-sdk\renpy\display\im.py", line 978, in load
+    child = cache.get(self.image)
+  File "E:\renpy-8.1.2-sdk\renpy\display\im.py", line 330, in get
+    surf = image.load()
+  File "E:\renpy-8.1.2-sdk\renpy\display\im.py", line 803, in load
+    raise e
+  File "E:\renpy-8.1.2-sdk\renpy\display\im.py", line 757, in load
+    filelike = renpy.loader.load(self.filename, directory="images")
+  File "E:\renpy-8.1.2-sdk\renpy\loader.py", line 833, in load
+    raise IOError("Couldn't find file '%s'." % name)
+OSError: Couldn't find file 'c2.png'.
+
+Windows-10-10.0.19045 AMD64
+Ren'Py 8.1.2.23090503
+Chacha Chaudhary 1.0
+Sat Sep 16 22:37:51 2023

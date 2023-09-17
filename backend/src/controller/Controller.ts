@@ -5,7 +5,7 @@ import {createPlace, nearbyLocations} from '../services/Services';
 import responseSchema from '../helpers/responseSchema';
 
 export const updateLocation = async (req: Request, res: Response) => {
-  const {lat, lon, distance = 0.5} = req.body;
+  const {lat, lon, distance = 1} = req.body;
   try {
     const data = await nearbyLocations(lat, lon, distance);
     return res.json(responseSchema(true, data));

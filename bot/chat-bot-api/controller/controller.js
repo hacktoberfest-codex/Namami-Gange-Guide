@@ -38,8 +38,9 @@ export async function english_text_audio_res(req, res) {
 export async function text_in_selected_lang(req, res) {
 	try {
 		const prompt = req.body.prompt;
-		const result = await bot(prompt);
-
+		const targetLang = req.body.selectedLang;
+		const response = await bot(prompt);
+		const result = await bhashini.nmt('en', targetLang, response)
 		res.json({ result });
 	} catch (error) {
 		console.error(error);
@@ -51,9 +52,16 @@ export async function text_in_selected_lang(req, res) {
 export async function text_audio_in_selected_lang(req, res) {
 	try {
 		const prompt = req.body.prompt;
-		const result = await bot(prompt);
+		const targetLang = req.body.selectedLang;
 
-		res.json({ result });
+		const response = await bot(prompt);
+		const result = await bhashini.nmt_tts('en', targetLang, response)
+		const output = {
+			text: result.translatedText,
+			audio: result.audioUri,
+		}
+
+		res.json({ output });
 	} catch (error) {
 		console.error(error);
 		res.status(500).json({ error: 'Internal Server Error' });
