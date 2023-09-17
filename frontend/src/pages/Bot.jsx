@@ -14,7 +14,7 @@ function Bot() {
     }
     return (
         <>
-            <div className='flex flex-row items-start mb-0 ml-0 mt-32'>
+            <div className='flex flex-row items-end mb-0 ml-0 mt-32'>
                 <button onClick={handlebutton}>
                     <img src={speaking} alt="" srcset="" />
                 </button>
