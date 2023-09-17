@@ -4,6 +4,7 @@
 
 1) NodeJS version 18+
 2) MongoDB
+3) Postman(optional): to import the `sih-backend.postman_collection.json` file and test the documented APIs.
 
 ## 1) Clone the repository
 
