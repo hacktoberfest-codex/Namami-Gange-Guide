@@ -56,7 +56,24 @@ function RiverineEcology() {
                     productivity.</p>
                 <h4>TOXIC CHEMICALS</h4>
                 <p>The river receives 260 Million Litre/day industrial wastes and
-                    1.3 billion litre / day Municipal sewage throughout its stretch.</p>
+                    1.3 billion litre / day Municipal sewage throughout its stretch.
+                    The river water is polluted with toxic
+chemicals and microbes. Indiscriminate use of organo-chlorine
+pesticides like DDT, Eldrin, Dieldrin, BHC, HCH etc both in
+agriculture and health sectors in Ganga Basin has led to bio concentration and bio-magnification of these toxic chemicals in fishes
+and other endangered animals like the Ganges dolphins.72 Use of
+DDT in agriculture was banned in 1989 with a mandate to use a
+maximum of 10,000 t/yr for the control of vector borne diseases.
+Most of these chemicals are carcinogenic and adversely affect human
+health through food chain . More number of cancer patients has
+been recorded at Mahavir Cancer Hospital in Patna from the area
+where DDT is used to control Kala-a-zar and other various diseases
+(personal Communication Kishor Kunal). Moreover, chemical
+control is not a permanent solution for vectors like mosquitoes and
+sand fly as they may become immune to the toxic chemicals.
+Increasing number of cancer patients in the areas where such toxic
+chemicals are being used is an indication of adverse effects of these
+toxics.</p>
 
             </div>
 
