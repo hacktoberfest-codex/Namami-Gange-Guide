@@ -7,13 +7,21 @@ const options = [
 	{ value: 'od', label: 'Odia' }
 ];
 
-function SelectLang() {
-	const [selectedOption, setSelectedOption] = useState('null');
+const SelectLang = ({ setLang }) => {
+	const [selectedOption, setSelectedOption] = useState(null);
 	return (
 		<div>
-			<Select defaultValue={selectedOption} onChange={setSelectedOption} options={options} isSearchable='true' />
+			<Select
+				defaultValue={selectedOption}
+				onChange={data => {
+					setSelectedOption(data);
+					setLang(data);
+				}}
+				options={options}
+				isSearchable={false}
+			/>
 		</div>
 	);
-}
+};
 
 export default SelectLang;

@@ -1,24 +1,22 @@
 import React, { Fragment, useState } from 'react';
-import resting from 'assets/chacha-cahaudhary/Lresting-bg.png';
 import speaking from 'assets/chacha-cahaudhary/Lspeaking-bg.png';
-import thinking from 'assets/chacha-cahaudhary/Lresting-bg.png';
 import ChatBot from './ChatBot';
 
 const Bot = () => {
 	const [isOpen, setIsOpen] = useState(false);
+
 	const handleButton = () => {
 		console.log('clicked');
-		setIsOpen(true);
+		setIsOpen(prev => !prev);
 	};
+
 	return (
-		<Fragment>
-			<div className='flex flex-row items-end'>
-				<button onClick={handleButton}>
-					<img className='w-40 h-40 object-contain' src={speaking} alt='Chacha Chaudhary' />
-				</button>
-				{isOpen && <ChatBot />}
+		<section className='flex flex-row items-end px-3 py-4 '>
+			<img className='w-[20%]' src={speaking} alt='Chacha Chaudhary' onClick={handleButton} />
+			<div className={`w-[90%] ${isOpen ? 'block' : 'hidden'}`}>
+				<ChatBot />
 			</div>
-		</Fragment>
+		</section>
 	);
 };
 
