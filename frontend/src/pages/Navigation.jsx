@@ -10,7 +10,7 @@ export default function Navigation() {
     const [Reponse, setReponse] = useState({});
 
     useEffect(() => {
-        axios.post('https://53ab-115-242-248-226.ngrok-free.app/updateLocation', {
+        axios.post('http://localhost:3000/updateLocation', {
             "lat": Latitude,
             "lon": Longitude
         }).then(response => {
