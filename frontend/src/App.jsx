@@ -1,3 +1,4 @@
+import 'regenerator-runtime/runtime'
 import React from 'react';
 import { MantineProvider } from '@mantine/core';
 import { ChatBot, Home } from 'pages';
