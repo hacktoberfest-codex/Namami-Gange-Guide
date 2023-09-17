@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Welcome, ChatMessage } from 'components';
-import { BsMic } from 'react-icons/bs'
+import { BsMic } from 'react-icons/bs';
 import { samplePhrases } from 'data';
 import { useMessageContext } from 'context/MessageProvider';
 import SelectLang from 'components/SelectLang';
@@ -12,17 +12,13 @@ const ChatBot = () => {
 	const currentChat = false;
 
 	const [state, setState] = useState('idle');
+	const [micOpen, setMicOpen] = useState(false);
 
 	const { chatHistory, addMessage } = useMessageContext();
 
 	const bottomRef = useRef(null);
 
-	const {
-		transcript,
-		listening,
-		resetTranscript,
-		browserSupportsSpeechRecognition
-	} = useSpeechRecognition();
+	const { transcript, listening, resetTranscript, browserSupportsSpeechRecognition } = useSpeechRecognition();
 
 	if (!browserSupportsSpeechRecognition) {
 		return <span>Browser doesn't support speech recognition.</span>;
@@ -44,21 +40,25 @@ const ChatBot = () => {
 
 	useEffect(() => {
 		focusInput();
-		console.log(state, listening)
-
+		// console.log(state, listening);
 	}, [state]);
 
-	const handlespeechListening = (event) => {
-		event.preventDefault();
+	const handleSpeechListening = () => {
 		SpeechRecognition.startListening({ continuous: true });
-		setMessage(transcript)
-	}
-	const handlespeechpause = () => {
+		console.log("true", listening)
+		console.log(transcript)
+		setMessage(transcript);
+
+	};
+
+	const handleSpeechPause = () => {
 		SpeechRecognition.stopListening();
+		console.log('false: ', listening)
 		resetTranscript();
-		setMessage('')
-		SpeechRecognition.abortListening()
-	}
+		setMessage('');
+		// setMicOpen(false);
+		SpeechRecognition.abortListening();
+	};
 
 	return (
 		<main className='bg-white md:rounded-lg md:shadow-md p-6 w-full h-full flex flex-col'>
@@ -74,7 +74,6 @@ const ChatBot = () => {
 										key={phrase}
 										onClick={() => {
 											addMessage('user', phrase);
-
 											setTimeout(() => {
 												setState('idle');
 												addMessage('assistant', 'Wait, I am looking for your query!');
@@ -106,21 +105,33 @@ const ChatBot = () => {
 					</button>
 				)}
 			</div>
-			<section className='bg-gray-100 rounded-lg p-2'>
+			<SelectLang />
+			<button type='button' onClick={() => handleSpeechListening()} className='cursor-pointer bg-slate-50 hover:bg-slate-300 ml-1 mr-1' >
+				<BsMic className='text-4xl'
+				/>
+			</button>
+			<input type='text' ref={inputRef} className='w-full rounded-l-lg p-2' placeholder={state === 'idle' ? 'Type your message...' : '...'} value={message} onChange={e => setMessage(e.target.value)} />
+			{state === 'idle' ? (
+				<button className='bg-blue-700 text-white text-base font-bold py-2 px-4 rounded-r-lg disabled:bg-gray-400 disabled:
+						cursor-not-allowed' type='submit' disabled={message ? false : true}>
+					Send
+				</button>
+			) : null}
+			{/* <section className='bg-gray-100 rounded-lg'>
 				<form
-					className='flex'
+					className='flex items-center justify-center border-2 rounded-lg'
 					onSubmit={e => {
 						e.preventDefault();
-						// sendMessage(message, chatHistory);
-						addMessage('user', message);
-						setMessage('');
-						setState('waiting');
-						console.log('Message Sent');
-
-						setTimeout(() => {
-							setState('idle');
-							addMessage('assistant', 'Wait, I am looking for your query!');
-						}, 1100);
+						// if (message) {
+						// 	addMessage('user', message);
+						// 	setState('waiting');
+						// 	console.log('Message Sent');
+						// 	setTimeout(() => {
+						// 		setState('idle');
+						// 		addMessage('assistant', 'Wait, I am looking for your query!');
+						// 	}, 1100);
+						// }
+						handleSpeechPause();
 					}}>
 					{message.length > 0 ? (
 						<button
@@ -135,17 +146,31 @@ const ChatBot = () => {
 						</button>
 					) : null}
 					<SelectLang />
-					<button className='bg-slate-50 hover:bg-slate-300 ml-1 mr-1' onClick={handlespeechListening} >
-						<BsMic className=' text-4xl ' />
-					</button>
+					<BsMic
+						className='text-4xl bg-slate-50 hover:bg-slate-300 ml-1 mr-1 cursor-pointer'
+						onClick={() => {
+							console.log("Mic clicked");
+							if (micOpen) {
+								setMicOpen(false);
+								handleSpeechListening();
+							} else {
+								handleSpeechPause();
+								setMicOpen(true);
+							}
+						}}
+					/>
 					<input type='text' ref={inputRef} className='w-full rounded-l-lg p-2' placeholder={state === 'idle' ? 'Type your message...' : '...'} value={message} onChange={e => setMessage(e.target.value)} disabled={state !== 'idle'} />
 					{state === 'idle' ? (
-						<button className='bg-blue-700 text-white text-base font-bold py-2 px-4 rounded-r-lg' type='submit' onClick={handlespeechpause} >
+						<button
+							className='bg-blue-700 text-white text-base font-bold py-2 px-4 rounded-r-lg disabled:bg-gray-400 disabled:
+						cursor-not-allowed'
+							type='submit'
+							disabled={message ? false : true}>
 							Send
 						</button>
 					) : null}
 				</form>
-			</section>
+			</section> */}
 		</main>
 	);
 };
