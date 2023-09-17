@@ -20,13 +20,14 @@ const App = () => {
 				}}>
 				<Router>
 					<Routes>
-						<Route path='/' element={<Home />} />
+						<Route path='/' element={<Greeting />} />
+						<Route path='/home' element={<Home />} />
 						<Route path='/chat' element={<ChatBot />} />
 						{/* <Route path='/carousel' element={<RiverineEcology />} /> */}
 						<Route path='/navigation' element={<Navigation />} />
 						<Route path='/riverine_ecology' element={<RiverineEcology />} />
 						<Route path='/warRoom_museum' element={<WarRoom_museum />} />
-						{/* <Route path='/' element={<Greeting />} /> */}
+
 					</Routes>
 				</Router>
 			</MantineProvider>

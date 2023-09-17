@@ -1,15 +1,18 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import greetImg from '../assets/chacha-cahaudhary/chacha.webp'
-import Home from './Home';
+import { useNavigate } from "react-router-dom";
 
 
 function Greeting() {
-    const [redirect, setRedirect] = useState(false);
-
+    let navigate = useNavigate();
     useEffect(() => {
         const timer = setTimeout(() => {
-            setRedirect(true);
+            return navigate("/home");
         }, 1000)
+
+        return () => {
+            clearTimeout(timer);
+        };
     }, [])
 
     return (
@@ -19,11 +22,10 @@ function Greeting() {
                 <div >
                     <img src={greetImg} alt="" />
                 </div>
-                <div className='text-3xl'>
+                <div className='text-5xl flex flex-col text-center'>
                     Welcome <span>Have a integrating learning about the NMCG flagship programe</span>
                 </div>
             </div>
-            {redirect && <Home />}
         </Fragment>
     )
 }
