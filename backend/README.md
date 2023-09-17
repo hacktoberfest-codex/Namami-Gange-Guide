@@ -1,5 +1,10 @@
 # Getting Started with Project
 
+## Pre-requisites
+
+1) NodeJS version 18+
+2) MongoDB
+
 ## 1) Clone the repository
 
 i) Open terminal and type:
@@ -35,11 +40,6 @@ run: `node dist/app.js` to run the server now.
 ## 5) Fix linting errors
 
 `npm run fix`
-
-## Pre-requisites
-
-1) NodeJS version 18+
-2) MongoDB
 
 ---
 The base URL of the server for frontent usage is:
