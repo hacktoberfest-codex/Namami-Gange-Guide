@@ -1,0 +1,20 @@
+.video-background {
+    position: relative;
+    width: 100%;
+    height: 36vh;
+    overflow: hidden;
+}
+
+/* Style the video element for full width and height */
+.video-background video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    position: absolute;
+    background: url('your-background-video.mp4') no-repeat center center;
+    top: 0;
+    left: 0;
+    opacity: 0.6;
+    /* Optional: Add other styles like filter, blur, etc. */
+}
