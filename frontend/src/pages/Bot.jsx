@@ -1,27 +1,25 @@
-import React, { useState } from 'react'
-import resting from 'assets/chacha-cahaudhary/Lresting-bg.png'
-import speaking from 'assets/chacha-cahaudhary/Lspeaking-bg.png'
-import thinking from 'assets/chacha-cahaudhary/Lresting-bg.png'
+import React, { Fragment, useState } from 'react';
+import resting from 'assets/chacha-cahaudhary/Lresting-bg.png';
+import speaking from 'assets/chacha-cahaudhary/Lspeaking-bg.png';
+import thinking from 'assets/chacha-cahaudhary/Lresting-bg.png';
 import ChatBot from './ChatBot';
 
+const Bot = () => {
+	const [isOpen, setIsOpen] = useState(false);
+	const handleButton = () => {
+		console.log('clicked');
+		setIsOpen(true);
+	};
+	return (
+		<Fragment>
+			<div className='flex flex-row items-end'>
+				<button onClick={handleButton}>
+					<img className='w-40 h-40 object-contain' src={speaking} alt='Chacha Chaudhary' />
+				</button>
+				{isOpen && <ChatBot />}
+			</div>
+		</Fragment>
+	);
+};
 
-function Bot() {
-    const [isOpen, setisOpen] = useState(false);
-    const handlebutton = () => {
-        console.log('clicked')
-        setisOpen(true);
-
-    }
-    return (
-        <>
-            <div className='flex flex-row items-end mb-0 ml-0 mt-32'>
-                <button onClick={handlebutton}>
-                    <img src={speaking} alt="" srcset="" />
-                </button>
-                {isOpen && <ChatBot />}
-            </div>
-        </>
-    )
-}
-
-export default Bot
+export default Bot;

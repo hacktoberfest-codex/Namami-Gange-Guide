@@ -146,15 +146,26 @@ const ChatBot = () => {
 						</button>
 					) : null}
 					<SelectLang />
-					<button type='button' onClick={() => handleSpeechListening()} className='cursor-pointer bg-slate-50 hover:bg-slate-300 ml-1 mr-1' >
-						<BsMic className='text-4xl'
-						/>
-					</button>
-
-					<input type='text' ref={inputRef} className='w-full rounded-l-lg p-2' placeholder={state === 'idle' ? 'Type your message...' : '...'} value={message} onChange={e => setMessage(e.target.value)} />
+					<BsMic
+						className='text-4xl bg-slate-50 hover:bg-slate-300 ml-1 mr-1 cursor-pointer'
+						onClick={() => {
+							console.log("Mic clicked");
+							if (micOpen) {
+								setMicOpen(false);
+								handleSpeechListening();
+							} else {
+								handleSpeechPause();
+								setMicOpen(true);
+							}
+						}}
+					/>
+					<input type='text' ref={inputRef} className='w-full rounded-l-lg p-2' placeholder={state === 'idle' ? 'Type your message...' : '...'} value={message} onChange={e => setMessage(e.target.value)} disabled={state !== 'idle'} />
 					{state === 'idle' ? (
-						<button className='bg-blue-700 text-white text-base font-bold py-2 px-4 rounded-r-lg disabled:bg-gray-400 disabled:
-						cursor-not-allowed' type='submit' disabled={message ? false : true}>
+						<button
+							className='bg-blue-700 text-white text-base font-bold py-2 px-4 rounded-r-lg disabled:bg-gray-400 disabled:
+						cursor-not-allowed'
+							type='submit'
+							disabled={message ? false : true}>
 							Send
 						</button>
 					) : null}
