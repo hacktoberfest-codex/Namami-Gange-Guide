@@ -4,11 +4,13 @@ dotenv.config();
 import express from 'express';
 
 import mongoDbConfig from './config/mongoDbConfig';
+import router from './router/Routes';
 
 const app = express();
 const port = 3000;
 
 app.use(express.json());
+app.use('/', router);
 
 app.listen(port, async () => {
   await mongoDbConfig();
