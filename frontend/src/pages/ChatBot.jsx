@@ -12,7 +12,7 @@ const ChatBot = () => {
 	const currentChat = false;
 
 	const [state, setState] = useState('idle');
-	const [micOpen, setMicOpen] = useState(false);
+	const [lang, setLang] = useState(null);
 
 	const { chatHistory, addMessage } = useMessageContext();
 
@@ -20,9 +20,9 @@ const ChatBot = () => {
 
 	const { transcript, listening, resetTranscript, browserSupportsSpeechRecognition } = useSpeechRecognition();
 
-	if (!browserSupportsSpeechRecognition) {
-		return <span>Browser doesn't support speech recognition.</span>;
-	}
+	// if (!browserSupportsSpeechRecognition) {
+	// 	return <span>Browser doesn't support speech recognition.</span>;
+	// }
 
 	useEffect(() => {
 		scrollToBottom();
@@ -44,25 +44,40 @@ const ChatBot = () => {
 	}, [state]);
 
 	const handleSpeechListening = () => {
-		SpeechRecognition.startListening({ continuous: true });
-		console.log("true", listening)
-		console.log(transcript)
+		SpeechRecognition.startListening({ continuous: true, language: lang.value });
+		console.log('true', listening);
+		console.log(transcript);
 		setMessage(transcript);
-
 	};
 
 	const handleSpeechPause = () => {
 		SpeechRecognition.stopListening();
-		console.log('false: ', listening)
+		console.log('false: ', listening);
 		resetTranscript();
 		setMessage('');
 		// setMicOpen(false);
 		SpeechRecognition.abortListening();
 	};
 
+	const baseURL = 'http://localhost:3000/bot';
+
+	const fetchResp = async ({ body }, route) => {
+		const fetchURL = baseURL + '/' + route;
+		const requestOptions = {
+			method: 'POST',
+			body: JSON.stringify(body)
+		};
+		const resp = await fetch(fetchURL, requestOptions);
+		if (!resp.ok) {
+			throw new Error('Error in api call');
+		}
+		const resJSON = await resp.json();
+		return resJSON;
+	};
+
 	return (
 		<main className='bg-white md:rounded-lg md:shadow-md p-6 w-full h-full flex flex-col'>
-			<h1 className='text-lg text-gray-800 underline underline-offset-2 '>Welcome to NMCG - Chacha Chaudhary</h1>
+			<h1 className='text-lg text-gray-800 underline underline-offset-2'>Welcome to NMCG - Chacha Chaudhary</h1>
 			<section className='overflow-y-auto flex-grow mb-4 pb-8'>
 				<div className='flex flex-col space-y-4'>
 					{chatHistory.length === 0 ? (
@@ -97,26 +112,45 @@ const ChatBot = () => {
 			<div className='flex items-center justify-center h-20'>
 				{state === 'idle' ? null : (
 					<button
-						className='bg-gray-100 text-gray-900 py-2 px-4 my-8'
+						className='bg-gray-300 rounded-lg text-gray-900 py-2 px-4 my-8'
 						onClick={() => {
 							console.log('Canceled Query');
+							setState('idle');
 						}}>
 						Stop generating
 					</button>
 				)}
 			</div>
-			<SelectLang />
-			<button type='button' onClick={() => handleSpeechListening()} className='cursor-pointer bg-slate-50 hover:bg-slate-300 ml-1 mr-1' >
-				<BsMic className='text-4xl'
-				/>
-			</button>
-			<input type='text' ref={inputRef} className='w-full rounded-l-lg p-2' placeholder={state === 'idle' ? 'Type your message...' : '...'} value={message} onChange={e => setMessage(e.target.value)} />
-			{state === 'idle' ? (
-				<button className='bg-blue-700 text-white text-base font-bold py-2 px-4 rounded-r-lg disabled:bg-gray-400 disabled:
-						cursor-not-allowed' type='submit' disabled={message ? false : true}>
+			<form
+				className='flex items-center justify-center rounded-lg p-0.5 border-2 border-gray-300'
+				onSubmit={e => {
+					e.preventDefault();
+				}}>
+				<SelectLang setLang={setLang} />
+				<button type='button' onClick={() => handleSpeechListening()} className='cursor-pointer bg-slate-50 hover:bg-slate-300 ml-1 mr-1'>
+					<BsMic className='text-4xl' />
+				</button>
+				<input type='text' ref={inputRef} className='w-full rounded-l-lg p-2' placeholder={state === 'idle' ? 'Type your message...' : '...'} value={message} onChange={e => setMessage(e.target.value)} />
+
+				<button
+					className='bg-blue-700 text-white text-base font-bold py-2 px-4 rounded-r-lg disabled:bg-gray-400 disabled:cursor-not-allowed'
+					disabled={message && state === 'idle' ? false : true}
+					onClick={async () => {
+						if (message) {
+							addMessage('user', message);
+							setState('waiting');
+							setMessage('');
+							const resp = await fetchResp({ prompt: message }, 'englishtext');
+							console.log(resp);
+							console.log('Message Sent');
+							setState('idle');
+							addMessage('assistant', resp.result);
+						}
+						handleSpeechPause();
+					}}>
 					Send
 				</button>
-			) : null}
+			</form>
 			{/* <section className='bg-gray-100 rounded-lg'>
 				<form
 					className='flex items-center justify-center border-2 rounded-lg'

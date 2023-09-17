@@ -1,4 +1,3 @@
-
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { user, ChachaChaudhary } from 'assets/images';
@@ -21,7 +20,6 @@ const ChatMessage = ({ message }) =>
 				<p>{message.content}</p>
 			</div>
 			<img className='w-10 h-10 rounded-full border-gray-400 mr-2' src={user} alt='User Image' />
-
 		</div>
 	) : (
 		<div className='flex items-end'>

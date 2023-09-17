@@ -1,4 +1,4 @@
-import 'regenerator-runtime/runtime'
+import 'regenerator-runtime/runtime';
 import React from 'react';
 import { MantineProvider } from '@mantine/core';
 import { ChatBot, Home, Navigation } from 'pages';
@@ -22,7 +22,6 @@ const App = () => {
 					<Routes>
 						<Route path='/' element={<Home />} />
 						<Route path='/chat' element={<ChatBot />} />
-						{/* <Route path='/carousel' element={<RiverineEcology />} /> */}
 						<Route path='/navigation' element={<Navigation />} />
 						<Route path='/riverine_ecology' element={<RiverineEcology />} />
 						<Route path='/warRoom_museum' element={<WarRoom_museum />} />

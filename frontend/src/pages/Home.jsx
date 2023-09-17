@@ -1,10 +1,11 @@
-import { Carousel } from 'components';
+import { Carousel, NavBar } from 'components';
 import React, { Fragment } from 'react';
 import Bot from './Bot';
 
 const Home = () => {
 	return (
-		<section className='w-full h-screen bg-[wheat]'>
+		<section className='w-full min-h-screen flex flex-col bg-[wheat]'>
+			<NavBar />
 			<Carousel />
 			<Bot />
 		</section>
