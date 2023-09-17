@@ -4,6 +4,7 @@ import { BsMic } from 'react-icons/bs'
 import { samplePhrases } from 'data';
 import { useMessageContext } from 'context/MessageProvider';
 import SelectLang from 'components/SelectLang';
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 
 const ChatBot = () => {
 	const [message, setMessage] = useState('');
@@ -15,6 +16,17 @@ const ChatBot = () => {
 	const { chatHistory, addMessage } = useMessageContext();
 
 	const bottomRef = useRef(null);
+
+	const {
+		transcript,
+		listening,
+		resetTranscript,
+		browserSupportsSpeechRecognition
+	} = useSpeechRecognition();
+
+	if (!browserSupportsSpeechRecognition) {
+		return <span>Browser doesn't support speech recognition.</span>;
+	}
 
 	useEffect(() => {
 		scrollToBottom();
@@ -33,6 +45,15 @@ const ChatBot = () => {
 	useEffect(() => {
 		focusInput();
 	}, [state]);
+
+	const handlespeechListening = () => {
+		SpeechRecognition.startListening({ continuous: true })
+	}
+	const handlespeechpause = () => {
+		SpeechRecognition.stopListening();
+		resetTranscript();
+		SpeechRecognition.abortListening()
+	}
 
 	return (
 		<main className='bg-white md:rounded-lg md:shadow-md p-6 w-full h-full flex flex-col'>
@@ -109,12 +130,12 @@ const ChatBot = () => {
 						</button>
 					) : null}
 					<SelectLang />
-					<button className='bg-slate-50 hover:bg-slate-300 ml-1 mr-1'>
+					<button className='bg-slate-50 hover:bg-slate-300 ml-1 mr-1' onClick={handlespeechListening} >
 						<BsMic className=' text-4xl ' />
 					</button>
-					<input type='text' ref={inputRef} className='w-full rounded-l-lg p-2' placeholder={state === 'idle' ? 'Type your message...' : '...'} value={message} onChange={e => setMessage(e.target.value)} disabled={state !== 'idle'} />
+					<input type='text' ref={inputRef} className='w-full rounded-l-lg p-2' placeholder={state === 'idle' ? 'Type your message...' : '...'} value={message || transcript} onChange={e => setMessage(e.target.value)} disabled={state !== 'idle'} />
 					{state === 'idle' ? (
-						<button className='bg-blue-700 text-white text-base font-bold py-2 px-4 rounded-r-lg' type='submit'>
+						<button className='bg-blue-700 text-white text-base font-bold py-2 px-4 rounded-r-lg' type='submit' onClick={handlespeechpause}>
 							Send
 						</button>
 					) : null}
