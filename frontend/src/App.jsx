@@ -20,7 +20,8 @@ const App = () => {
 					<Routes>
 						<Route path='/' element={<Home />} />
 						<Route path='/chat' element={<ChatBot />} />
-						<Route path='/carousel' element={<RiverineEcology />} />
+						<Route path='/riverine_ecology' element={<RiverineEcology />} />
+						<Route path='/warRoom_museum' element={<RiverineEcology />} />
 					</Routes>
 				</Router>
 			</MantineProvider>
