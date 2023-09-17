@@ -45,14 +45,18 @@ const ChatBot = () => {
 
 	const handleSpeechListening = () => {
 		SpeechRecognition.startListening({ continuous: true });
+		console.log("true", listening)
+		console.log(transcript)
 		setMessage(transcript);
+
 	};
 
 	const handleSpeechPause = () => {
 		SpeechRecognition.stopListening();
+		console.log('false: ', listening)
 		resetTranscript();
 		setMessage('');
-		setMicOpen(false);
+		// setMicOpen(false);
 		SpeechRecognition.abortListening();
 	};
 
@@ -101,20 +105,32 @@ const ChatBot = () => {
 					</button>
 				)}
 			</div>
-			<section className='bg-gray-100 rounded-lg'>
+			<SelectLang />
+			<button type='button' onClick={() => handleSpeechListening()} className='cursor-pointer bg-slate-50 hover:bg-slate-300 ml-1 mr-1' >
+				<BsMic className='text-4xl'
+				/>
+			</button>
+			<input type='text' ref={inputRef} className='w-full rounded-l-lg p-2' placeholder={state === 'idle' ? 'Type your message...' : '...'} value={message} onChange={e => setMessage(e.target.value)} />
+			{state === 'idle' ? (
+				<button className='bg-blue-700 text-white text-base font-bold py-2 px-4 rounded-r-lg disabled:bg-gray-400 disabled:
+						cursor-not-allowed' type='submit' disabled={message ? false : true}>
+					Send
+				</button>
+			) : null}
+			{/* <section className='bg-gray-100 rounded-lg'>
 				<form
 					className='flex items-center justify-center border-2 rounded-lg'
 					onSubmit={e => {
 						e.preventDefault();
-						if (message) {
-							addMessage('user', message);
-							setState('waiting');
-							console.log('Message Sent');
-							setTimeout(() => {
-								setState('idle');
-								addMessage('assistant', 'Wait, I am looking for your query!');
-							}, 1100);
-						}
+						// if (message) {
+						// 	addMessage('user', message);
+						// 	setState('waiting');
+						// 	console.log('Message Sent');
+						// 	setTimeout(() => {
+						// 		setState('idle');
+						// 		addMessage('assistant', 'Wait, I am looking for your query!');
+						// 	}, 1100);
+						// }
 						handleSpeechPause();
 					}}>
 					{message.length > 0 ? (
@@ -133,7 +149,7 @@ const ChatBot = () => {
 					<BsMic
 						className='text-4xl bg-slate-50 hover:bg-slate-300 ml-1 mr-1 cursor-pointer'
 						onClick={() => {
-							console.log('Mic clciked');
+							console.log("Mic clicked");
 							if (micOpen) {
 								setMicOpen(false);
 								handleSpeechListening();
@@ -154,7 +170,7 @@ const ChatBot = () => {
 						</button>
 					) : null}
 				</form>
-			</section>
+			</section> */}
 		</main>
 	);
 };
