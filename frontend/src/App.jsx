@@ -1,6 +1,6 @@
 import React from 'react';
 import { MantineProvider } from '@mantine/core';
-import { ChatBot, Home } from 'pages';
+import { ChatBot, Home, Navigation } from 'pages';
 import MessageProvider from 'context/MessageProvider';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -18,6 +18,7 @@ const App = () => {
 					<Routes>
 						<Route path='/' element={<Home />} />
 						<Route path='/chat' element={<ChatBot />} />
+						<Route path='/navigation' element={<Navigation />} />
 					</Routes>
 				</Router>
 			</MantineProvider>
