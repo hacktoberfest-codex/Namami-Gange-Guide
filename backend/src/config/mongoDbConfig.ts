@@ -1,6 +1,6 @@
 import {connect} from 'mongoose';
 
-const dbURI = 'mongodb://localhost:27017';
+const dbURI = 'mongodb://0.0.0.0:27017';
 
 export default () => {
   return connect(dbURI, {dbName: 'SIH'})
