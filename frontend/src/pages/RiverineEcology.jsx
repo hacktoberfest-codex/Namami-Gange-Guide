@@ -9,7 +9,7 @@ function RiverineEcology() {
       <NavBar />
       <div className="heading stylish-heading">
         <h1>
-        	Riverine Ecology page!!!
+		Dive into the Hidden World of Riverine Ecosystems
         </h1>
       </div>
       <div className="carousel border-2 border-green-500">
