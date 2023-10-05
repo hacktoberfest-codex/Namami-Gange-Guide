@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { NavBar } from 'components';
 import React, { useEffect, useState } from 'react'
 
 // import 'react-spring-bottom-sheet/dist/style.css'
@@ -47,14 +46,11 @@ export default function Navigation() {
     }
 
     return (
-        <>
-            <NavBar/>
-            <div>
+        <div>
             <div>{`Latitude: ${Latitude}, Longitude: ${Longitude}\n`}</div>
             <pre>{JSON.stringify(Reponse, null, 4)}</pre>
             <div>{Reponse.type}</div>
-            </div>
-        </>
+        </div>
 
     )
 }
