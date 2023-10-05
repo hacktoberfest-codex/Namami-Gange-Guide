@@ -1,0 +1,31 @@
+/* RiverineEcology.css */
+
+/* Styling for the heading */
+.stylish-heading {
+    font-family: 'Arial', sans-serif;
+    background-color: #007acc;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .stylish-heading:hover {
+    background-color: #005a9e;
+  }
+  
+  /* Styling for the main content */
+  .stylish-text {
+    font-family: 'Georgia', serif;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  
+  /* Styling for lists */
+  .stylish-list {
+    list-style-type: disc;
+    margin-left: 20px;
+  }
+  
