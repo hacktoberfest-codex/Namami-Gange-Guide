@@ -1,9 +1,10 @@
 import React, { Fragment } from 'react';
-import { Carousel } from 'components';
+import { Carousel, NavBar } from 'components';
 
 function WarRoom_museum() {
 	return (
 		<Fragment>
+			<NavBar/>
 			<div className='header-Carousel'>
 				<Carousel>
 					<div>

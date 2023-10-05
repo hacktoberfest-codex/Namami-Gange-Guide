@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { createStyles, Header, Container, Group, Burger, Paper, Transition, rem } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const HEADER_HEIGHT = rem(80);
 
@@ -76,8 +76,8 @@ const useStyles = createStyles(theme => ({
 
 const links = [
 	{
-		link: '/chat',
-		label: 'Chat'
+		link: '/riverine_ecology',
+		label: 'Riverine Ecology'
 	},
 	{
 		link: '/navigation',
@@ -106,11 +106,14 @@ const NavBar = () => {
 			{link.label}
 		</Link>
 	));
-
+	const navigate = useNavigate() ;
+	const handleClick = ()=>{
+		navigate('/home')
+	}
 	return (
 		<Header height={HEADER_HEIGHT} className={classes.root}>
 			<Container className={classes.header}>
-				<img className='w-20 h-20' src='https://nmcg.nic.in/images/nmcgGif.gif' alt='NMCG' />
+				<img className='w-16 h-16 cursor-pointer' src='https://nmcg.nic.in/images/nmcgGif.gif' alt='NMCG' onClick={handleClick}/>
 				<Group spacing={5} className={classes.links}>
 					{items}
 				</Group>
