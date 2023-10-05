@@ -16,6 +16,7 @@
     "@mantine/hooks": "^6.0.20",
     "@mantine/modals": "^6.0.20",
     "axios": "^1.5.0",
+    "bhashini-translation": "^1.0.4",
     "embla-carousel-react": "^7.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
