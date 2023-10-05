@@ -1,20 +1,22 @@
-import { Carousel } from 'components';
+import { Carousel, NavBar } from 'components';
+import CarouselsReco from 'components/CarouselsReco';
 import React, { Fragment } from 'react';
 
 function RiverineEcology() {
 
 	return (
 		<Fragment>
+			<NavBar/>
 			<div className="heading">
-				<h1 className='text-3xl flex justify-center items-center bg-blue-200'>Hello this is riverine ecology page!!!</h1>
+				<h1 className='text-3xl flex justify-center items-center bg-blue-200 py-3'>Hello this is riverine ecology page!!!</h1>
 
 			</div>
 			<div className="carousel border-2 border-green-500">
 				<CarouselsReco />
 			</div>
 
-			<div className="info">
-				<h1>INTRODUCTION</h1>
+			<div className="info m-10">
+				<h1 >INTRODUCTION</h1>
 				<p>The Himalaya has the largest concentration of glaciers outside
 					the polar caps with coverage area of 33000 km2, providing 86000,000
 					m3 of water through seven of Asia's great rivers - the Ganga, the
@@ -24,6 +26,7 @@ function RiverineEcology() {
 					cover a surface area of permanent snow and ice in the region is
 					about 97,020 km2 with 12,930 km2 volume.
 				</p>
+				<br />
 				<h1>GANGA BASIN</h1>
 				<p>The Ganga basin drains an area of 1,086,000 km2 out of which
 					861000 km2 is in India. The catchments lie in Uttar Pradesh (294,364
